@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+// 添加插件
+apply plugin: 'com.mob.sdk'
+
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+MobSDK {
+    appKey "23bf1b9918698"
+    appSecret "27bd42e4dce4137fc88dd72250ef168e"
+    SMSSDK {}
+}
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.twinkle.cdnubbs"
+        minSdkVersion 21
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
+    compile 'cn.bmob.android:bmob-sdk:3.5.5'//3.5.5：请务必查看下面注释[1]
+    compile 'cn.bmob.android:bmob-push:0.8'//bmob-push：Bmob的推送包
+    compile 'org.xutils:xutils:3.5.0'   //XUTILS3
+    implementation 'com.alibaba:fastjson:1.2.39'    //FASTJSON
+    implementation files('libs/android-smart-image-view-1.0.0.jar')   //imageview   本地 jar包
+}
