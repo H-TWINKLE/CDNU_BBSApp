@@ -14,4 +14,13 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="phone_11">请填写11位电话号码</string>
+    <string name="success_send_code">验证码发送成功</string>
+    <string name="send_to_phone">已发送验证码到以下手机号</string>
+    <string name="register_success">注册成功</string>
+    <string name="send_code">发送验证码</string>
+    <string name="check">验证</string>
+    <string name="code_input">请输入验证码</string>
+    <string name="pass_input">请输入密码</string>
+    <string name="pass1pass2">密码输入不相同</string>
 </resources>

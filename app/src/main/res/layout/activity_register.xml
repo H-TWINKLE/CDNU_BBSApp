@@ -69,6 +69,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_gravity="center|top"
             android:layout_height="wrap_content">
 
             <EditText
@@ -76,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:ems="8"
+                android:ems="10"
                 android:gravity="center"
                 android:hint="@string/phone"
                 android:inputType="number"
@@ -84,12 +85,11 @@
 
             <Button
                 android:id="@+id/btn_register_code"
-                android:layout_width="0dp"
+                android:layout_width="50dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="0.6"
                 android:background="@drawable/shape"
                 tools:text="60s" />
         </LinearLayout>
@@ -119,6 +119,7 @@
             android:id="@+id/ett_register_pass2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:ems="13"
             android:gravity="center"
             android:hint="@string/pass2"
