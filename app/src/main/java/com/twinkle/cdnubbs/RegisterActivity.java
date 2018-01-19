@@ -18,9 +18,16 @@ import com.twinkle.cdnubbs.java.Init;
 import com.twinkle.cdnubbs.java.Util;
 import com.twinkle.cdnubbs.user.User;
 
+import java.util.List;
+
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
@@ -33,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private int flag = 0;
     private Boolean issend = false;
     private Button btn_register_code, btn_register_check;
+    private String object_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             lly3.setVisibility(View.GONE);
         } else if (flag == 2) {
             tbr_register.setTitle(getString(R.string.forget_pass));
-            lly1.setVisibility(View.GONE);
+            lly2.setVisibility(View.GONE);
             lly3.setVisibility(View.GONE);
             btn_register_code.setVisibility(View.GONE);
 
@@ -94,7 +102,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_register_check:
-                btn_register();
+                if (flag == 1||flag==3) {
+                    btn_register();
+                } else if (flag == 2||flag==4) {
+                    btn_forgetpass();}
                 break;
             case R.id.btn_register_code:
                 SMSSDK.getVerificationCode("86", ett_register_number.getText().toString().trim());
@@ -107,11 +118,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void btn_register() {
         if (!issend) {
             String tel = ett_register_number.getText().toString().trim();
+            Log.i("register",tel);
             if (TextUtils.isEmpty(tel) || tel.length() != 11) {
                 Util.toast(RegisterActivity.this, getString(R.string.phone_11));
             } else {
-                SMSSDK.getVerificationCode("86", tel);
-                btn_register_code.setVisibility(View.VISIBLE);
+                check_num_is_alive(tel);
+
             }
         } else {
             if (flag == 3) {
@@ -120,6 +132,75 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 SMSSDK.submitVerificationCode("86", tvw_register_phone.getText().toString(), ett_register_code.getText().toString().trim());
             }
         }
+
+    }
+
+    private void btn_forgetpass() {
+
+        if (!issend) {
+            String tel = ett_register_number.getText().toString().trim();
+            Log.i("pass",tel);
+            if (TextUtils.isEmpty(tel) || tel.length() != 11) {
+                Util.toast(RegisterActivity.this, getString(R.string.phone_11));
+            } else {
+                check_num_is_register(tel);
+            }
+        } else {
+            if (flag == 4) {
+                update_pass();
+            } else {
+                SMSSDK.submitVerificationCode("86", tvw_register_phone.getText().toString(), ett_register_code.getText().toString().trim());
+            }
+        }
+    }
+
+    private void check_num_is_register(final String tel) {
+        Bmob.initialize(RegisterActivity.this, "a0084a6493c91624bb96851013e23a28");
+        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
+        query.addWhereEqualTo("username", tel);
+        query.findObjects(new FindListener<BmobUser>() {
+            @Override
+            public void done(List<BmobUser> object, BmobException e) {
+                if (e == null) {
+                 if(object.size()==0){
+                   ett_register_number.setError(getString(R.string.phone_not_alive));
+                 }else {
+                     object_id = object.get(0).getObjectId();
+                     SMSSDK.getVerificationCode("86", tel);
+                     btn_register_code.setVisibility(View.VISIBLE);
+                 }
+                } else {
+                    Util.toast(RegisterActivity.this, getString(R.string.internet_is_gone));
+                }
+            }
+        });
+
+    }
+
+    private void check_num_is_alive(final String tel) {
+
+        Bmob.initialize(RegisterActivity.this, "a0084a6493c91624bb96851013e23a28");
+        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
+        query.addWhereEqualTo("username", tel);
+        query.findObjects(new FindListener<BmobUser>() {
+            @Override
+            public void done(List<BmobUser> object, BmobException e) {
+                if (e == null) {
+                    if(object.size()==0){
+                        SMSSDK.getVerificationCode("86", tel);
+                        btn_register_code.setVisibility(View.VISIBLE);
+                    }else {
+                        ett_register_number.setError(getString(R.string.phone_is_alive));
+                    }
+
+                } else {
+
+                    Util.toast(RegisterActivity.this, getString(R.string.internet_is_gone));
+
+
+                }
+            }
+        });
 
     }
 
@@ -133,13 +214,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Util.toast(RegisterActivity.this, getString(R.string.register_success));
+                            //  Util.toast(RegisterActivity.this, getString(R.string.register_success));
                             lly1.setVisibility(View.GONE);
                             lly2.setVisibility(View.GONE);
                             lly3.setVisibility(View.VISIBLE);
                             tvw_register_title.setText(getString(R.string.pass_input));
-                            btn_register_check.setText(getString(R.string.register));
-                            flag = 3;
+                            if (flag==1){
+                                btn_register_check.setText(getString(R.string.register));
+                                flag = 3;
+                            }else if (flag==2){
+                                btn_register_check.setText(getString(R.string.pass_revise));
+                                flag =  4;
+                            }
+
                         }
                     });
 
@@ -215,6 +302,40 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     };
 
+    private void update_pass() {
+        String pass1 = ett_register_pass1.getText().toString().trim();
+        String pass2 = ett_register_pass2.getText().toString().trim();
+        String phone = tvw_register_phone.getText().toString();
+        if (TextUtils.isEmpty(pass1)) {
+            ett_register_pass1.setError(getString(R.string.tip_input));
+            ett_register_pass1.setFocusable(true);
+        } else if (TextUtils.isEmpty(pass2)) {
+            ett_register_pass2.setError(getString(R.string.tip_input));
+            ett_register_pass2.setFocusable(true);
+        } else if (!pass1.equals(pass2)) {
+            ett_register_pass1.setError(getString(R.string.pass1pass2));
+        } else {
+
+            User user = new User();
+            user.setPass(pass2);
+            user.setPassword(pass2);
+            user.setMobilePhoneNumber(phone);
+            user.setMobilePhoneNumberVerified(true);
+            user.update(object_id, new UpdateListener() {
+                @Override
+                public void done(BmobException e) {
+                    if (e == null) {
+                        Util.toast(RegisterActivity.this, getString(R.string.pass_revise_succcess));
+                        finish();
+                    } else {
+                        Util.toast(RegisterActivity.this, e.toString());
+                    }
+                }
+            });
+        }
+    }
+
+
     private void check_pass1andpass2() {
         String pass1 = ett_register_pass1.getText().toString().trim();
         String pass2 = ett_register_pass2.getText().toString().trim();
@@ -228,7 +349,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         } else if (!pass1.equals(pass2)) {
             ett_register_pass1.setError(getString(R.string.pass1pass2));
         } else {
-            Bmob.initialize(RegisterActivity.this, "a0084a6493c91624bb96851013e23a28");
+
             User user = new User();
             user.setUsername(tvw_register_phone.getText().toString());
             user.setName("新用户" + phone.substring(phone.length() - 6));

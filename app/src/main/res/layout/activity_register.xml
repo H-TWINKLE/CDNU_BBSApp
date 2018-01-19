@@ -112,7 +112,7 @@
             android:ems="13"
             android:gravity="center"
             android:hint="@string/pass"
-            android:inputType="number"
+            android:inputType="textCapCharacters|textVisiblePassword"
             tools:text="12345678901" />
 
         <EditText
@@ -123,7 +123,7 @@
             android:ems="13"
             android:gravity="center"
             android:hint="@string/pass2"
-            android:inputType="number"
+            android:inputType="textVisiblePassword"
             tools:text="12345678901" />
 
     </LinearLayout>
