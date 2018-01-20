@@ -19,6 +19,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        // ... and any other excludes go here
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -43,4 +48,7 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.39'    //FASTJSON
     implementation files('libs/android-smart-image-view-1.0.0.jar')   //imageview   本地 jar包
     compile 'com.roger.gifloadinglibrary:gifloadinglibrary:1.0.0'  //loadinggif
+    compile 'id.zelory:compressor:2.1.0' //图片压缩框架
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1' //图片压缩插件
+    compile 'com.soundcloud.android:android-crop:1.0.1@aar' //图片裁剪
 }

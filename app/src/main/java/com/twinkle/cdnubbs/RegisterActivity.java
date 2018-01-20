@@ -2,8 +2,6 @@ package com.twinkle.cdnubbs;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,24 +12,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.twinkle.cdnubbs.java.Init;
-import com.twinkle.cdnubbs.java.Util;
+import com.twinkle.cdnubbs.java.content.BaseActivity;
+import com.twinkle.cdnubbs.java.utils.Init;
+import com.twinkle.cdnubbs.java.utils.Util;
 import com.twinkle.cdnubbs.user.User;
 
 import java.util.List;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout lly1, lly2, lly3;
     private Toolbar tbr_register;
@@ -42,15 +39,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button btn_register_code, btn_register_check;
     private String object_id;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        init();
-        apply();
-    }
 
-    private void init() {
+    @Override
+    public void findView() {
         tbr_register = (Toolbar) findViewById(R.id.tbr_register);
         lly1 = (LinearLayout) findViewById(R.id.llt_register1);
         lly2 = (LinearLayout) findViewById(R.id.llt_register2);
@@ -66,8 +57,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    private void apply() {
-
+    @Override
+    public void initView() {
         //toobar title
         Intent intent = RegisterActivity.this.getIntent();
         flag = intent.getIntExtra("flag", 0);
@@ -95,17 +86,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btn_register_check.setOnClickListener(this);
         btn_register_code.setOnClickListener(this);
 
-
     }
+
+    @Override
+    public void initData() {
+    }
+
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_register_check:
-                if (flag == 1||flag==3) {
+                if (flag == 1 || flag == 3) {
                     btn_register();
-                } else if (flag == 2||flag==4) {
-                    btn_forgetpass();}
+                } else if (flag == 2 || flag == 4) {
+                    btn_forgetpass();
+                }
                 break;
             case R.id.btn_register_code:
                 SMSSDK.getVerificationCode("86", ett_register_number.getText().toString().trim());
@@ -118,12 +114,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void btn_register() {
         if (!issend) {
             String tel = ett_register_number.getText().toString().trim();
-            Log.i("register",tel);
+            Log.i("register", tel);
             if (TextUtils.isEmpty(tel) || tel.length() != 11) {
                 Util.toast(RegisterActivity.this, getString(R.string.phone_11));
             } else {
                 check_num_is_alive(tel);
-
             }
         } else {
             if (flag == 3) {
@@ -136,10 +131,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void btn_forgetpass() {
-
         if (!issend) {
             String tel = ett_register_number.getText().toString().trim();
-            Log.i("pass",tel);
+            Log.i("pass", tel);
             if (TextUtils.isEmpty(tel) || tel.length() != 11) {
                 Util.toast(RegisterActivity.this, getString(R.string.phone_11));
             } else {
@@ -155,20 +149,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void check_num_is_register(final String tel) {
-        Bmob.initialize(RegisterActivity.this, "a0084a6493c91624bb96851013e23a28");
         BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
         query.addWhereEqualTo("username", tel);
         query.findObjects(new FindListener<BmobUser>() {
             @Override
             public void done(List<BmobUser> object, BmobException e) {
                 if (e == null) {
-                 if(object.size()==0){
-                   ett_register_number.setError(getString(R.string.phone_not_alive));
-                 }else {
-                     object_id = object.get(0).getObjectId();
-                     SMSSDK.getVerificationCode("86", tel);
-                     btn_register_code.setVisibility(View.VISIBLE);
-                 }
+                    if (object.size() == 0) {
+                        ett_register_number.setError(getString(R.string.phone_not_alive));
+                    } else {
+                        object_id = object.get(0).getObjectId();
+                        SMSSDK.getVerificationCode("86", tel);
+                        btn_register_code.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     Util.toast(RegisterActivity.this, getString(R.string.internet_is_gone));
                 }
@@ -178,18 +171,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void check_num_is_alive(final String tel) {
-
-        Bmob.initialize(RegisterActivity.this, "a0084a6493c91624bb96851013e23a28");
         BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
         query.addWhereEqualTo("username", tel);
         query.findObjects(new FindListener<BmobUser>() {
             @Override
             public void done(List<BmobUser> object, BmobException e) {
                 if (e == null) {
-                    if(object.size()==0){
+                    if (object.size() == 0) {
                         SMSSDK.getVerificationCode("86", tel);
                         btn_register_code.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         ett_register_number.setError(getString(R.string.phone_is_alive));
                     }
 
@@ -219,12 +210,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             lly2.setVisibility(View.GONE);
                             lly3.setVisibility(View.VISIBLE);
                             tvw_register_title.setText(getString(R.string.pass_input));
-                            if (flag==1){
+                            if (flag == 1) {
                                 btn_register_check.setText(getString(R.string.register));
                                 flag = 3;
-                            }else if (flag==2){
+                            } else if (flag == 2) {
                                 btn_register_check.setText(getString(R.string.pass_revise));
-                                flag =  4;
+                                flag = 4;
                             }
 
                         }
@@ -267,6 +258,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterEventHandler(eh);// 注销回调接口registerEventHandler必须和unregisterEventHandler配套使用，否则可能造成内存泄漏。
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_register;
     }
 
     @Override
@@ -352,7 +348,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             User user = new User();
             user.setUsername(tvw_register_phone.getText().toString());
-            user.setName("新用户" + phone.substring(phone.length() - 6));
+            user.setName(Init.new_admin + phone.substring(phone.length() - 6));
             user.setLevel(0);
             user.setPass(pass2);
             user.setPassword(pass2);

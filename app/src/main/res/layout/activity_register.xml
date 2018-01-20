@@ -4,37 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center|top"
     android:orientation="vertical"
+    android:gravity="center|top"
     tools:context="com.twinkle.cdnubbs.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tbr_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:title="@string/register"
-        />
+        app:title="@string/register" />
 
     <TextView
         android:id="@+id/tvw_register_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="@string/smssdk_write_mobile_phone"
-        android:textColor="#131111"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#131111"
+        android:text="@string/smssdk_write_mobile_phone" />
 
     <LinearLayout
         android:id="@+id/llt_register1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center|top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center|top">
 
 
         <EditText
@@ -42,10 +41,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:ems="13"
             android:gravity="center"
-            android:hint="@string/phone"
             android:inputType="number"
+            android:ems="13"
+            android:hint="@string/phone"
             tools:text="12345678901" />
 
     </LinearLayout>
@@ -60,27 +59,27 @@
             android:id="@+id/tvw_register_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="13"
             android:gravity="center"
-            android:textColor="#131111"
+            android:ems="13"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="#131111"
             tools:text="1234567890" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_gravity="center|top"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top">
 
             <EditText
                 android:id="@+id/ett_register_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:ems="10"
                 android:gravity="center"
-                android:hint="@string/phone"
                 android:inputType="number"
+                android:ems="10"
+                android:hint="@string/phone"
                 tools:text="12345678901" />
 
             <Button
@@ -100,8 +99,8 @@
         android:id="@+id/llt_register3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center|top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center|top">
 
 
         <EditText
@@ -109,10 +108,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:ems="13"
             android:gravity="center"
-            android:hint="@string/pass"
             android:inputType="textCapCharacters|textVisiblePassword"
+            android:ems="13"
+            android:hint="@string/pass"
             tools:text="12345678901" />
 
         <EditText
@@ -120,10 +119,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:ems="13"
             android:gravity="center"
-            android:hint="@string/pass2"
             android:inputType="textVisiblePassword"
+            android:ems="13"
+            android:hint="@string/pass2"
             tools:text="12345678901" />
 
     </LinearLayout>

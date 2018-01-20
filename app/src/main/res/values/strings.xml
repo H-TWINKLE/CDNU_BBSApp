@@ -18,6 +18,7 @@
     <string name="success_send_code">验证码发送成功</string>
     <string name="send_to_phone">已发送验证码到以下手机号</string>
     <string name="register_success">注册成功</string>
+    <string name="login_sucess">登陆成功</string>
     <string name="send_code">发送验证码</string>
     <string name="check">验证</string>
     <string name="code_input">请输入验证码</string>
@@ -28,16 +29,30 @@
     <string name="pass_revise_succcess">密码修改成功</string>
     <string name="pass_revise">修改密码</string>
     <string name="internet_is_gone">网络异常</string>
+    <string name="to">前往</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Index</string>
     <string name="focus_text">我的关注</string>
     <string name="fans_text">我的粉丝</string>
-    <string-array name="lv_test">
-        <item>我的消息</item>
-        <item>我的评论</item>
-        <item>我的帖子</item>
-        <item>我的收藏</item>
-        <item>我的赞</item>
-    </string-array>
+
+    <string name="mess">我的消息</string>
+    <string name="comment">我的评论</string>
+    <string name="post">我的帖子</string>
+    <string name="coll">我的收藏</string>
+    <string name="praise">我的赞</string>
+
+
+    <string name="admin_info">个人信息</string>
+    <string name="head">头像</string>
+    <string name="logout">退出登录</string>
+    <string name="revise_info">修改信息成功</string>
+    <string name="zero">0</string>
+    <string name="old_pass">请输入旧密码</string>
+    <string name="new_pass">请输入新密码</string>
+    <string name="pass_not_correct">密码不正确</string>
+    <string name="level_tip">每天登录bbs、发帖、留言、浏览消息都能够提高成长值哦。</string>
+    
+    <string name="failed_to_open">打开图片失败</string>
+    <string name="upload_pic_success">上传图片成功</string>
 </resources>

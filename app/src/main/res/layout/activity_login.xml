@@ -24,16 +24,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center|top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center|top">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="104dp"
             android:layout_height="104dp"
             android:layout_marginTop="40dp"
-            android:src="@drawable/bbs"
-            android:contentDescription="@string/app_name"/>
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/bbs" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,33 +46,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:hint="@string/tel_jwgl"
-                android:inputType="number" />
+                android:inputType="number"
+                android:hint="@string/tel_jwgl" />
 
             <EditText
                 android:id="@+id/ett_login_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/pass"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:hint="@string/pass" />
 
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape"
-            android:text="@string/login" />
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape"
+                android:text="@string/login" />
 
-        <TextView
-            android:id="@+id/tvw_login_forget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="end"
-            android:textColor="#4096a9"
-            android:text="@string/forget_pass" />
+            <TextView
+                android:id="@+id/tvw_login_forget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="end"
+                android:textColor="#4096a9"
+                android:text="@string/forget_pass" />
 
         </LinearLayout>
 

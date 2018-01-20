@@ -13,7 +13,7 @@ public class User extends BmobUser {
 
     private String name;
     private String time;
-    private BmobFile pic;
+    private String pic;
     private String cdnu_id;
     private int level;
     private String pass;
@@ -59,11 +59,11 @@ public class User extends BmobUser {
         this.time = time;
     }
 
-    public BmobFile getPic() {
+    public String getPic() {
         return pic;
     }
 
-    public void setPic(BmobFile pic) {
+    public void setPic(String pic) {
         this.pic = pic;
     }
 

@@ -1,21 +1,20 @@
 package com.twinkle.cdnubbs;
 
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
+
+import com.twinkle.cdnubbs.java.content.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
 
     private BottomNavigationView navigation;
@@ -24,27 +23,27 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        init();
-        apply();
-
-
+    public int getLayoutId() {
+        return R.layout.activity_main;
     }
 
-    private void init() {
+    @Override
+    public void findView() {
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         vpr_main = (ViewPager) findViewById(R.id.vpr_main);
     }
 
-    private void apply() {
-
+    @Override
+    public void initView() {
         navigation.setItemIconTintList(null);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         vpr_main.addOnPageChangeListener(this);
         initFragments();
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
