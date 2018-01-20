@@ -1,6 +1,9 @@
 package com.twinkle.cdnubbs;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -20,6 +23,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private BottomNavigationView navigation;
     private ViewPager vpr_main;
     private List<Fragment> list_frag;
+
 
 
     @Override

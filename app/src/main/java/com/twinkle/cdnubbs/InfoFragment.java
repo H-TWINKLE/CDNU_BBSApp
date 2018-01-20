@@ -1,7 +1,10 @@
 package com.twinkle.cdnubbs;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 
 import com.loopj.android.image.SmartImageView;
 import com.twinkle.cdnubbs.java.content.InfoAdapter;
+import com.twinkle.cdnubbs.java.utils.Init;
 import com.twinkle.cdnubbs.java.utils.Util;
 import com.twinkle.cdnubbs.user.User;
 
@@ -34,10 +38,35 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
     private SmartImageView siv_info_header;
     private InfoAdapter infoAdapter;
 
+
+    protected BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            User user = Util.getUser();
+            tvw_info_name.setText(user.getName());
+            x.image().bind(siv_info_header, user.getPic(),new ImageOptions.Builder().setCircular(true).build());
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 在当前的activity中注册广播
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Init.UpdateInfo);
+        getActivity().registerReceiver(this.broadcastReceiver, filter);
+    }
+
     public InfoFragment() {
         // Required empty public constructor
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(this.broadcastReceiver);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

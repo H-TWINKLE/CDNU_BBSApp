@@ -36,6 +36,7 @@ public class LoadDialog {
 
     public void diss() {
         mGifLoadingView.dismiss();
+        countDownTimer.cancel();
 
     }
 

@@ -9,6 +9,7 @@ public interface Init {
     public static final String ok = "确定";
     public static final String cancel = "取消";
     public static final String ExitApp = "ExitApp";
+    public static final String UpdateInfo = "UpdateInfo";
     public static final String new_admin = "新用户";
     public static final int PICK_IMAGE_REQUEST = 1;
     public static final String timeout = "处理超时，请稍后再试";

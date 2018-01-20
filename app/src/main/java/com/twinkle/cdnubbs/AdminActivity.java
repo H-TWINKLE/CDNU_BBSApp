@@ -134,6 +134,7 @@ public class AdminActivity extends BaseActivity {
             public void done(BmobException e) {
                 if (e == null) {
                     Util.toast(AdminActivity.this, getString(R.string.revise_info));
+                    myUpdate();
                     loadDialog.diss();
                     adminAdapter.notifyDataSetChanged();
                 } else {
@@ -257,6 +258,7 @@ public class AdminActivity extends BaseActivity {
                 if(e==null){
                     Util.toast(AdminActivity.this, getString(R.string.upload_pic_success));
                     adminAdapter.notifyDataSetChanged();
+                    myUpdate();
                     loadDialog.diss();
                 }else{
                     Util.toast(AdminActivity.this, e.getMessage());
@@ -264,6 +266,11 @@ public class AdminActivity extends BaseActivity {
             }
         });
     }
+    private void myUpdate() {
+        Intent intent = new Intent();
+        intent.setAction(Init.UpdateInfo);
+        sendBroadcast(intent);
 
+    }
 
 }
