@@ -2,15 +2,9 @@ package com.twinkle.cdnubbs.java;
 
 import android.app.Application;
 
-import com.twinkle.cdnubbs.LoginActivity;
-
 import org.xutils.x;
 
 import cn.bmob.v3.Bmob;
-
-/**
- * Created by TWINKLE on 2018/1/18.
- */
 
 public class MyApp extends Application {
     @Override

@@ -1,11 +1,9 @@
-package com.twinkle.cdnubbs;
+package com.twinkle.cdnubbs.ui;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -13,7 +11,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.soundcloud.android.crop.Crop;
-import com.twinkle.cdnubbs.java.content.AdminAdapter;
+import com.twinkle.cdnubbs.R;
+import com.twinkle.cdnubbs.java.adapter.AdminAdapter;
 import com.twinkle.cdnubbs.java.content.BaseActivity;
 import com.twinkle.cdnubbs.java.utils.Init;
 import com.twinkle.cdnubbs.java.content.LoadDialog;
@@ -23,6 +22,8 @@ import com.twinkle.cdnubbs.user.User;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -34,8 +35,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.twinkle.cdnubbs.java.utils.Init.PICK_IMAGE_REQUEST;
-
 public class AdminActivity extends BaseActivity {
 
     private ListView lv_admin;
@@ -43,6 +42,7 @@ public class AdminActivity extends BaseActivity {
     private AdminAdapter adminAdapter;
     private LoadDialog loadDialog;
     private MessDialog messDialog;
+    private List<File> files;
 
 
     @Override
@@ -61,6 +61,7 @@ public class AdminActivity extends BaseActivity {
         tb_admin = (Toolbar) findViewById(R.id.tb_admin);
     }
 
+
     @Override
     public void initView() {
         //toolbar
@@ -71,7 +72,7 @@ public class AdminActivity extends BaseActivity {
             }
         });
         //setadapter
-        adminAdapter = new AdminAdapter(AdminActivity.this, null);
+        adminAdapter = new AdminAdapter(AdminActivity.this, files);
         lv_admin.setAdapter(adminAdapter);
         lv_admin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -100,11 +101,8 @@ public class AdminActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        files = new ArrayList<>();
     }
-
-
-
 
     private void get_dialog(String title, final int ii) {
         final EditText editText = new EditText(AdminActivity.this);
@@ -133,44 +131,21 @@ public class AdminActivity extends BaseActivity {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
-                    Util.toast(AdminActivity.this, getString(R.string.revise_info));
+                    Util.UiToast(AdminActivity.this, getString(R.string.revise_info));
                     myUpdate();
                     loadDialog.diss();
                     adminAdapter.notifyDataSetChanged();
                 } else {
-                    Util.toast(AdminActivity.this, e.toString());
+                    Util.UiToast(AdminActivity.this, e.toString());
                 }
             }
         });
     }
 
-  /*  @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            if (data == null) {
-                Util.toast(AdminActivity.this, getString(R.string.failed_to_open));
-                return;
-            }
-            try {
-              *//* File actualImage = Util.from(this, data.getData());
-                adminAdapter = new AdminAdapter(AdminActivity.this, actualImage);
-                lv_admin.setAdapter(adminAdapter);
-                loadDialog = new LoadDialog(AdminActivity.this);
-                loadDialog.show();*//*
-                compressImage(Util.from(this, data.getData()));
-            } catch (IOException e) {
-                Util.toast(AdminActivity.this, getString(R.string.failed_to_open));
-                e.printStackTrace();
-                loadDialog.diss();
-            }
-        }
-    }*/
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
         if (requestCode == Crop.REQUEST_PICK && resultCode == RESULT_OK) {
-                beginCrop(result.getData());
+            beginCrop(result.getData());
         } else if (requestCode == Crop.REQUEST_CROP) {
             handleCrop(resultCode, result);
         }
@@ -197,7 +172,7 @@ public class AdminActivity extends BaseActivity {
 
     public void compressImage(File actualImage) {
         if (actualImage == null) {
-            Util.toast(AdminActivity.this, getString(R.string.failed_to_open));
+            Util.UiToast(AdminActivity.this, getString(R.string.failed_to_open));
         } else {
             new Compressor(this)
                     .compressToFileAsFlowable(actualImage)
@@ -206,8 +181,8 @@ public class AdminActivity extends BaseActivity {
                     .subscribe(new Consumer<File>() {
                         @Override
                         public void accept(File file) {
-                            adminAdapter = new AdminAdapter(AdminActivity.this, file);
-                            lv_admin.setAdapter(adminAdapter);
+                            files.add(file);
+                            adminAdapter.notifyDataSetChanged();
                             loadDialog = new LoadDialog(AdminActivity.this);
                             loadDialog.show();
                             try {
@@ -220,27 +195,26 @@ public class AdminActivity extends BaseActivity {
                         @Override
                         public void accept(Throwable throwable) {
                             throwable.printStackTrace();
-                            Util.toast(AdminActivity.this, getString(R.string.failed_to_open));
+                            Util.UiToast(AdminActivity.this, getString(R.string.failed_to_open));
                             loadDialog.diss();
                         }
                     });
         }
     }
 
-    private  void upload_pic(File file) throws Exception{
+    private void upload_pic(File file) throws Exception {
         final BmobFile bmobFile = new BmobFile(file);
         bmobFile.uploadblock(new UploadFileListener() {
-
             @Override
             public void done(BmobException e) {
-                if(e==null){
-                    //bmobFile.getFileUrl()--返回的上传文件的完整地址
-                   update_pic(bmobFile.getFileUrl());
-                }else{
-                    Util.toast(AdminActivity.this, e.getMessage());
+                if (e == null) {
+                    update_pic(bmobFile.getFileUrl());
+                } else {
+                    Util.UiToast(AdminActivity.this, e.getMessage());
                     loadDialog.diss();
                 }
             }
+
             @Override
             public void onProgress(Integer value) {
                 // 返回的上传进度（百分比）
@@ -248,29 +222,29 @@ public class AdminActivity extends BaseActivity {
         });
     }
 
-    private void update_pic(String text){
-
+    private void update_pic(String text) {
         User bmobUser = BmobUser.getCurrentUser(User.class);
         bmobUser.setPic(text);
         bmobUser.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if(e==null){
-                    Util.toast(AdminActivity.this, getString(R.string.upload_pic_success));
+                if (e == null) {
+                    Util.UiToast(AdminActivity.this, getString(R.string.upload_pic_success));
                     adminAdapter.notifyDataSetChanged();
                     myUpdate();
                     loadDialog.diss();
-                }else{
-                    Util.toast(AdminActivity.this, e.getMessage());
+                } else {
+                    Util.UiToast(AdminActivity.this, e.getMessage());
                 }
             }
         });
     }
+
+    //广播更新画面
     private void myUpdate() {
         Intent intent = new Intent();
         intent.setAction(Init.UpdateInfo);
         sendBroadcast(intent);
-
     }
 
 }

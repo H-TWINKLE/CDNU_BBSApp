@@ -52,7 +52,16 @@
     <string name="new_pass">请输入新密码</string>
     <string name="pass_not_correct">密码不正确</string>
     <string name="level_tip">每天登录bbs、发帖、留言、浏览消息都能够提高成长值哦。</string>
-    
+
     <string name="failed_to_open">打开图片失败</string>
     <string name="upload_pic_success">上传图片成功</string>
+    <string name="lyric">不敢回看 左顾右盼不自然的暗自喜欢 偷偷搭讪总没完地坐立难安 试探说晚安 多空泛又心酸
+        低头呢喃 对你的偏爱太过于明目张胆 在原地打转的小丑伤心不断 空空留遗憾 多难堪又为难 释然 慵懒 尽欢 </string>
+
+    <string name="shtc">生活吐槽</string>
+    <string name="xxhd">学校活动</string>
+    <string name="qzzx">求助咨询</string>
+    <string name="qbbk">全部板块</string>
+
+    <string name="focus">关注</string>
 </resources>

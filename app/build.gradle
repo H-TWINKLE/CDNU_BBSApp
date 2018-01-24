@@ -51,4 +51,8 @@ dependencies {
     compile 'id.zelory:compressor:2.1.0' //图片压缩框架
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1' //图片压缩插件
     compile 'com.soundcloud.android:android-crop:1.0.1@aar' //图片裁剪
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'   //recycleview
+    compile 'com.yalantis:phoenix:1.2.3' //下拉刷新框架
+    compile 'com.youth.banner:banner:1.4.10'  //图片轮播插件
+    compile 'com.jph.takephoto:takephoto_library:4.0.3'  //图片选择
 }

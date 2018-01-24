@@ -1,9 +1,7 @@
-package com.twinkle.cdnubbs;
+package com.twinkle.cdnubbs.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,12 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.twinkle.cdnubbs.java.content.BaseActivity;
+import com.twinkle.cdnubbs.R;
 import com.twinkle.cdnubbs.java.content.LoadDialog;
 import com.twinkle.cdnubbs.java.utils.Util;
 import com.twinkle.cdnubbs.user.User;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -118,7 +115,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 if (e == null) {
 
-                    Util.toast(LoginActivity.this, getString(R.string.login_sucess));
+                    Util.UiToast(LoginActivity.this, getString(R.string.login_sucess));
                     //通过BmobUser user = BmobUser.getCurrentUser()获取登录成功后的本地用户信息
                     //如果是自定义用户对象MyUser，可通过MyUser user = BmobUser.getCurrentUser(MyUser.class)获取自定义用户信息
                     load.diss();
@@ -126,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     finish();
 
                 } else {
-                    Util.toast(LoginActivity.this, e.toString());
+                    Util.UiToast(LoginActivity.this, e.toString());
                     Log.i("error", e.toString());
                     load.diss();
                 }

@@ -49,7 +49,7 @@ public class LoadDialog {
         @Override
         public void onFinish() {
             mGifLoadingView.dismiss();
-            Util.toast(activity, Init.timeout);
+            Util.UiToast(activity, Init.timeout);
         }
     };
 }

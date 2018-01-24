@@ -28,13 +28,17 @@ public class Util {
     private static final int EOF = -1;
     private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
 
-    public static void toast(final AppCompatActivity appCompatActivity, final String text) {
+    public static void UiToast(final AppCompatActivity appCompatActivity, final String text) {
         appCompatActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Toast.makeText(appCompatActivity,text,Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public static void BaseToast(Context context,String text) {
+        Toast.makeText(context,text,Toast.LENGTH_SHORT).show();
     }
 
     public static User getUser(){

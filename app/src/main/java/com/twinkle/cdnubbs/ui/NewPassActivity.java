@@ -1,13 +1,12 @@
-package com.twinkle.cdnubbs;
+package com.twinkle.cdnubbs.ui;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.twinkle.cdnubbs.R;
 import com.twinkle.cdnubbs.java.content.BaseActivity;
 import com.twinkle.cdnubbs.java.utils.Util;
 import com.twinkle.cdnubbs.user.User;
@@ -90,10 +89,10 @@ public class NewPassActivity extends BaseActivity implements View.OnClickListene
                     @Override
                     public void done(BmobException e) {
                         if (e == null) {
-                            Util.toast(NewPassActivity.this, getString(R.string.pass_revise_succcess));
+                            Util.UiToast(NewPassActivity.this, getString(R.string.pass_revise_succcess));
                             finish();
                         } else {
-                            Util.toast(NewPassActivity.this, e.toString());
+                            Util.UiToast(NewPassActivity.this, e.toString());
                         }
                     }
                 });

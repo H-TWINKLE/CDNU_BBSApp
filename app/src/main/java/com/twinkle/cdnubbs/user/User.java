@@ -4,12 +4,7 @@ import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 
-/**
- * Created by TWINKLE on 2018/1/18.
- */
-
 public class User extends BmobUser {
-
 
     private String name;
     private String time;
@@ -74,4 +69,5 @@ public class User extends BmobUser {
     public void setLevel(int level) {
         this.level = level;
     }
+
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center|top"
-    tools:context="com.twinkle.cdnubbs.RegisterActivity">
+    tools:context="com.twinkle.cdnubbs.ui.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tbr_register"

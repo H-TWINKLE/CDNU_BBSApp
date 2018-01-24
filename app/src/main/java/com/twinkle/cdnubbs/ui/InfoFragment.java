@@ -1,4 +1,4 @@
-package com.twinkle.cdnubbs;
+package com.twinkle.cdnubbs.ui;
 
 
 import android.content.BroadcastReceiver;
@@ -7,19 +7,24 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.loopj.android.image.SmartImageView;
-import com.twinkle.cdnubbs.java.content.InfoAdapter;
+import com.twinkle.cdnubbs.R;
+import com.twinkle.cdnubbs.java.adapter.InfoAdapter;
 import com.twinkle.cdnubbs.java.utils.Init;
 import com.twinkle.cdnubbs.java.utils.Util;
+import com.twinkle.cdnubbs.ui.AdminActivity;
 import com.twinkle.cdnubbs.user.User;
 
 import org.xutils.image.ImageOptions;
@@ -37,6 +42,8 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
     private LinearLayout llt_info_admin;
     private SmartImageView siv_info_header;
     private InfoAdapter infoAdapter;
+    private BottomNavigationView navigation;
+    private FloatingActionButton fab_main;
 
 
     protected BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -44,7 +51,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         public void onReceive(Context context, Intent intent) {
             User user = Util.getUser();
             tvw_info_name.setText(user.getName());
-            x.image().bind(siv_info_header, user.getPic(),new ImageOptions.Builder().setCircular(true).build());
+            x.image().bind(siv_info_header, user.getPic(), new ImageOptions.Builder().setCircular(true).build());
         }
     };
 
@@ -72,6 +79,11 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
+        findView(view);
+        return view;
+    }
+
+    public void findView(View view) {
         lv_info = (ListView) view.findViewById(R.id.lv_info);
 
         tvw_info_fans = (TextView) view.findViewById(R.id.tvw_info_fans);
@@ -86,7 +98,23 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         tvw_info_level = (TextView) view.findViewById(R.id.tvw_info_level);
         tvw_info_name = (TextView) view.findViewById(R.id.tvw_info_name);
         siv_info_header = (SmartImageView) view.findViewById(R.id.siv_info_header);
-        return view;
+        navigation = (BottomNavigationView) getActivity().findViewById(R.id.navigation);
+        fab_main = (FloatingActionButton) getActivity().findViewById(R.id.fab_main);
+    }
+
+
+    private void showView() {
+        navigation.animate().translationY(0).setInterpolator(new AccelerateInterpolator(2)).start();
+        fab_main.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            showView();
+        }
     }
 
     @Override
@@ -103,8 +131,8 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         tvw_info_name.setText(user.getName());
         tvw_info_admin.setText(user.getUsername());
         tvw_info_level.setText(String.valueOf(user.getLevel()));
-       // siv_info_header.setImageUrl(user.getPic());
-        x.image().bind(siv_info_header, user.getPic(),new ImageOptions.Builder().setCircular(true).build());
+        // siv_info_header.setImageUrl(user.getPic());
+        x.image().bind(siv_info_header, user.getPic(), new ImageOptions.Builder().setCircular(true).build());
         llt_info_admin.setOnClickListener(this);
         ivw_info_fans.setOnClickListener(this);
         ivw_info_focus.setOnClickListener(this);

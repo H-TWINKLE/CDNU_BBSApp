@@ -1,61 +1,40 @@
-package com.twinkle.cdnubbs.java.content;
+package com.twinkle.cdnubbs.java.adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopj.android.image.SmartImageView;
-import com.twinkle.cdnubbs.AdminActivity;
-import com.twinkle.cdnubbs.LoginActivity;
-import com.twinkle.cdnubbs.NewPassActivity;
+import com.twinkle.cdnubbs.ui.LoginActivity;
+import com.twinkle.cdnubbs.ui.NewPassActivity;
 import com.twinkle.cdnubbs.R;
 import com.twinkle.cdnubbs.java.utils.Init;
 import com.twinkle.cdnubbs.java.utils.Util;
 import com.twinkle.cdnubbs.user.User;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.List;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import android.net.Uri;
 
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
-import static cn.volley.VolleyLog.TAG;
-import static com.twinkle.cdnubbs.java.utils.Init.PICK_IMAGE_REQUEST;
-
-/**
- * Created by TWINKLE on 2018/1/20.
- */
-
 public class AdminAdapter extends BaseAdapter {
     private Context context;
     private String[] name = Init.lv_admin;
-   private File actualImage;
-
-    //private Uri actualImage;
+    private List<File> actualImage;
 
 
-    public AdminAdapter(Context context,File actualImage) {
+    public AdminAdapter(Context context, List<File> actualImage) {
         this.context = context;
         this.actualImage = actualImage;
     }
-
-   /* public AdminAdapter(Context context,Uri actualImage) {
-        this.context = context;
-        this.actualImage = actualImage;
-    }*/
-
     @Override
     public int getCount() {
         return name.length;
@@ -87,20 +66,15 @@ public class AdminAdapter extends BaseAdapter {
         tip.setText(name[i]);
 
         //setheader
-
         if (i != 0) {
             siv_admin_header.setVisibility(View.GONE);
-
+        } else {
+            x.image().bind(siv_admin_header, Util.getUser().getPic(), new ImageOptions.Builder().setCircular(true).build());
+            //  siv_admin_header.setImageUrl(Util.getUser().getPic());
         }
-        else {
-            x.image().bind(siv_admin_header, Util.getUser().getPic(),new ImageOptions.Builder().setCircular(true).build());
-         //  siv_admin_header.setImageUrl(Util.getUser().getPic());
-
-        }
-        if(actualImage!=null){
-           siv_admin_header.setImageBitmap(BitmapFactory.decodeFile(actualImage.getAbsolutePath()));
-
-           // siv_admin_header.setImageUrl(actualImage.toString());
+        if (actualImage != null) {
+            siv_admin_header.setImageBitmap(BitmapFactory.decodeFile(actualImage.get(0).getAbsolutePath()));
+            // siv_admin_header.setImageUrl(actualImage.toString());
         }
 
         //setinf
@@ -152,8 +126,6 @@ public class AdminAdapter extends BaseAdapter {
         Intent intent = new Intent();
         intent.setAction("ExitApp");
         context.sendBroadcast(intent);
-
     }
-
 
 }

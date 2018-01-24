@@ -1,4 +1,4 @@
-package com.twinkle.cdnubbs.java.content;
+package com.twinkle.cdnubbs.java.adapter;
 
 import android.content.Context;
 import android.view.View;

@@ -1,6 +1,8 @@
 package com.twinkle.cdnubbs.java.utils;
 
 
+import com.twinkle.cdnubbs.R;
+
 public interface Init {
 
     public static final String now_time = String.valueOf(System.currentTimeMillis());
@@ -13,4 +15,6 @@ public interface Init {
     public static final String new_admin = "新用户";
     public static final int PICK_IMAGE_REQUEST = 1;
     public static final String timeout = "处理超时，请稍后再试";
+    public static final int[] classes = new int[]{R.drawable.shtc, R.drawable.xxhd, R.drawable.qzzx, R.drawable.qbbk};
+    public static final int[] classes_title = new int[]{R.string.shtc,R.string.xxhd,R.string.qzzx,R.string.qbbk};
 }

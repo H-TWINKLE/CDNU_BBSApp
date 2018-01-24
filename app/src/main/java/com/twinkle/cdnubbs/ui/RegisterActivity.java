@@ -1,4 +1,4 @@
-package com.twinkle.cdnubbs;
+package com.twinkle.cdnubbs.ui;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.twinkle.cdnubbs.R;
 import com.twinkle.cdnubbs.java.content.BaseActivity;
 import com.twinkle.cdnubbs.java.utils.Init;
 import com.twinkle.cdnubbs.java.utils.Util;
@@ -116,7 +117,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             String tel = ett_register_number.getText().toString().trim();
             Log.i("register", tel);
             if (TextUtils.isEmpty(tel) || tel.length() != 11) {
-                Util.toast(RegisterActivity.this, getString(R.string.phone_11));
+                Util.UiToast(RegisterActivity.this, getString(R.string.phone_11));
             } else {
                 check_num_is_alive(tel);
             }
@@ -135,7 +136,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             String tel = ett_register_number.getText().toString().trim();
             Log.i("pass", tel);
             if (TextUtils.isEmpty(tel) || tel.length() != 11) {
-                Util.toast(RegisterActivity.this, getString(R.string.phone_11));
+                Util.UiToast(RegisterActivity.this, getString(R.string.phone_11));
             } else {
                 check_num_is_register(tel);
             }
@@ -163,7 +164,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         btn_register_code.setVisibility(View.VISIBLE);
                     }
                 } else {
-                    Util.toast(RegisterActivity.this, getString(R.string.internet_is_gone));
+                    Util.UiToast(RegisterActivity.this, getString(R.string.internet_is_gone));
                 }
             }
         });
@@ -186,7 +187,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
                 } else {
 
-                    Util.toast(RegisterActivity.this, getString(R.string.internet_is_gone));
+                    Util.UiToast(RegisterActivity.this, getString(R.string.internet_is_gone));
 
 
                 }
@@ -222,7 +223,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     });
 
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {       //获取验证码成功
-                    Util.toast(RegisterActivity.this, getString(R.string.success_send_code));
+                    Util.UiToast(RegisterActivity.this, getString(R.string.success_send_code));
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -243,7 +244,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 ((Throwable) data).printStackTrace();
                 try {
                     // data = "["+data.toString()+"]";
-                    Util.toast(RegisterActivity.this,
+                    Util.UiToast(RegisterActivity.this,
                             JSONObject.parseObject(data.toString().
                                     replace("java.lang.Throwable: ", "")).get("detail").toString());
                 } catch (Exception e) {
@@ -321,10 +322,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 @Override
                 public void done(BmobException e) {
                     if (e == null) {
-                        Util.toast(RegisterActivity.this, getString(R.string.pass_revise_succcess));
+                        Util.UiToast(RegisterActivity.this, getString(R.string.pass_revise_succcess));
                         finish();
                     } else {
-                        Util.toast(RegisterActivity.this, e.toString());
+                        Util.UiToast(RegisterActivity.this, e.toString());
                     }
                 }
             });
@@ -359,10 +360,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 @Override
                 public void done(User user, BmobException e) {
                     if (e == null) {
-                        Util.toast(RegisterActivity.this, getString(R.string.register_success));
+                        Util.UiToast(RegisterActivity.this, getString(R.string.register_success));
                         finish();
                     } else {
-                        Util.toast(RegisterActivity.this, e.toString());
+                        Util.UiToast(RegisterActivity.this, e.toString());
                     }
                 }
             });

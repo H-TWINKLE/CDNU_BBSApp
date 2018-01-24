@@ -6,14 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.twinkle.cdnubbs.MainActivity">
+    tools:context="com.twinkle.cdnubbs.ui.MainActivity">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="65dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_border_color_white_48dp"
+        app:backgroundTint="#fc4442" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vpr_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="55dp"></android.support.v4.view.ViewPager>
-
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -21,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation"
-        app:itemTextColor="@color/black" />
+        app:itemTextColor="@color/black"
+        app:menu="@menu/navigation" />
 
 </FrameLayout>

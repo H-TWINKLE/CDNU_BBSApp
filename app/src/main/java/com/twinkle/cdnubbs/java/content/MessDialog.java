@@ -2,12 +2,9 @@ package com.twinkle.cdnubbs.java.content;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.EditText;
 
-import com.twinkle.cdnubbs.AdminActivity;
 import com.twinkle.cdnubbs.java.utils.Init;
 
 public abstract class MessDialog extends AlertDialog {

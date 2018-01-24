@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:padding="10dp">
+
+            <com.loopj.android.image.SmartImageView
+                android:id="@+id/siv_sr_index_header"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/head" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_cr_index_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#060606"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="笔法科技" />
+
+                <TextView
+                    android:id="@+id/tv_cr_index_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#060606"
+                    android:textSize="12sp"
+                    tools:text="1月18日发布" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_add_red_a400_48dp"/>
+
+                <TextView
+                    android:id="@+id/tv_cr_index_focus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#060606"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:text="@string/focus" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <com.loopj.android.image.SmartImageView
+                android:id="@+id/siv_cr_index_pic"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/test" />
+
+            <TextView
+                android:id="@+id/tv_cr_index_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="1"
+                android:textColor="#121111"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="你想经历的是什么，请大声告诉我！" />
+
+            <TextView
+                android:id="@+id/tv_cr_index_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                tools:text="@string/lyric" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start">
+
+            <ImageButton
+                android:id="@+id/ib_cr_index_love"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/praise"
+                android:contentDescription="@string/praise" />
+
+            <TextView
+                android:id="@+id/tv_cr_index_love"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                tools:text="0" />
+
+            <ImageButton
+                android:id="@+id/ib_cr_index_comment"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/comment"
+                android:contentDescription="@string/comment" />
+
+            <TextView
+                android:id="@+id/tv_cr_index_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                tools:text="0" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/crop__button_bar" />
+
+</LinearLayout>
