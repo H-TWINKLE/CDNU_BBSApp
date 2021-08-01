@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.twinkle.cdnubbs.ui.activity.TopicActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_topic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="?attr/homeAsUpIndicator">
+
+        <AutoCompleteTextView
+            android:id="@+id/actv_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:hint="@string/topic"
+            android:inputType="textPersonName"
+            android:completionThreshold="0"
+            android:dropDownWidth="match_parent"/>
+    </android.support.v7.widget.Toolbar>
+
+
+
+</LinearLayout>

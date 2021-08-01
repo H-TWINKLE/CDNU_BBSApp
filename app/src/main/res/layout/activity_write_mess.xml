@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.twinkle.cdnubbs.ui.WriteMessActivity">
+    android:focusableInTouchMode="true"
+    tools:context="com.twinkle.cdnubbs.ui.activity.WriteMessActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         android:padding="5dp">
 
         <ImageView
+            android:id="@+id/iv_wm_finsh"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="start|center"
@@ -21,12 +23,14 @@
             android:src="@drawable/ic_close_black_48dp" />
 
         <com.loopj.android.image.SmartImageView
+            android:id="@+id/siv_wm_header"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:src="@drawable/head" />
 
         <ImageView
+            android:id="@+id/iv_wm_send"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="end|center"
@@ -39,11 +43,78 @@
         android:layout_height="3dp"
         android:background="@color/crop__button_bar" />
 
-        <TextView
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_wm_mess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="start|top"
+            android:hint="@string/text"
+            android:inputType="textMultiLine"
+            android:minHeight="200dp"
+            android:padding="10dp" />
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"/>
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_wm_local"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="10dp"
+                android:textColor="#113191"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="我在这儿！"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_wm_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/crop__button_bar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/iv_wm_choose_pic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/text"
+                    android:padding="3dp"
+                    android:src="@drawable/choose_pic" />
+
+                <ImageView
+                    android:id="@+id/iv_wm_choose_topic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/text"
+                    android:padding="3dp"
+                    android:src="@drawable/local" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

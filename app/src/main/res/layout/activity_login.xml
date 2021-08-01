@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.twinkle.cdnubbs.ui.LoginActivity">
+    tools:context="com.twinkle.cdnubbs.ui.activity.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,18 +38,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="30dp"
+            android:padding="20dp"
             android:orientation="vertical">
 
             <EditText
+                android:ems="13"
+                android:gravity="center"
                 android:id="@+id/ett_login_admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:inputType="number"
-                android:hint="@string/tel_jwgl" />
+                android:hint="@string/tel" />
 
             <EditText
+                android:ems="3"
+                android:gravity="center"
                 android:id="@+id/ett_login_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +73,7 @@
                 android:id="@+id/tvw_login_forget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:gravity="end"
                 android:textColor="#4096a9"
                 android:text="@string/forget_pass" />

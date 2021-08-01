@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    tools:context="com.twinkle.cdnubbs.ui.activity.ContentActivity">
+
+
+    <FrameLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/crop__button_bar" />
+
+        <com.loopj.android.image.SmartImageView
+           android:padding="10dp"
+            android:id="@+id/siv_content_comment_header"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            tools:src="@drawable/head" />
+
+        <EditText
+            android:id="@+id/et_content_comment"
+            android:layout_gravity="start|center"
+            android:background="@null"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:hint="@string/addcomment"
+            android:layout_marginStart="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:title="@string/content" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <com.loopj.android.image.SmartImageView
+                        android:id="@+id/siv_content_header"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:src="@drawable/head" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_content_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            tools:text="名字" />
+
+                        <TextView
+                            android:id="@+id/tv_content_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            tools:text="时间" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_content_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="#2e2c2c"
+                    android:textSize="16sp"
+                    tools:text="@string/lyric" />
+
+                <TextView
+                    android:id="@+id/tv_content_local"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#113191"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="我在这儿！" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_content_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/crop__button_bar" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/ib_content_love"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/praise"
+                        android:contentDescription="@string/praise" />
+
+                    <TextView
+                        android:id="@+id/tv_content_love"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="150dp"
+                        android:maxLines="3"
+                        tools:text="0" />
+
+                    <ImageButton
+                        android:id="@+id/ib_content_comment"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30dp"
+                        android:background="@drawable/comment"
+                        android:contentDescription="@string/comment" />
+
+                    <TextView
+                        android:id="@+id/tv_content_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        tools:text="0" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/crop__button_bar" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_content_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

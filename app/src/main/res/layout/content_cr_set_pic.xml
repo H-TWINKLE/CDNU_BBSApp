@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:layout_marginEnd="7dp"
+        android:id="@+id/iv_wm_setpic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:src="@color/smssdk_lv_tv_color"
+        android:layout_marginTop="7dp"/>
+
+    <ImageView
+        android:id="@+id/iv_wm_setpic_close"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="end"
+        android:src="@drawable/rea_close" />
+
+</FrameLayout>

@@ -2,19 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.twinkle.cdnubbs.ui.IndexFragment">
+    tools:context="com.twinkle.cdnubbs.ui.fragment.IndexFragment">
 
-      <com.yalantis.phoenix.PullToRefreshView
-          android:id="@+id/ptrv_index"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
+    <com.yalantis.phoenix.PullToRefreshView
+        android:id="@+id/ptrv_index"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-      <android.support.v7.widget.RecyclerView
-          android:id="@+id/rv_index"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_index"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-      </com.yalantis.phoenix.PullToRefreshView>
+    </com.yalantis.phoenix.PullToRefreshView>
 
 
 </FrameLayout>

@@ -41,18 +41,22 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
-    compile 'cn.bmob.android:bmob-sdk:3.5.5'//3.5.5：请务必查看下面注释[1]
-    compile 'cn.bmob.android:bmob-push:0.8'//bmob-push：Bmob的推送包
-    compile 'org.xutils:xutils:3.5.0'   //XUTILS3
+
+    implementation 'cn.bmob.android:bmob-sdk:3.5.5'
+    implementation 'cn.bmob.android:bmob-push:0.8'//bmob-push：Bmob的推送包
+
+    implementation 'org.xutils:xutils:3.5.0'   //XUTILS3
     implementation 'com.alibaba:fastjson:1.2.39'    //FASTJSON
     implementation files('libs/android-smart-image-view-1.0.0.jar')   //imageview   本地 jar包
-    compile 'com.roger.gifloadinglibrary:gifloadinglibrary:1.0.0'  //loadinggif
-    compile 'id.zelory:compressor:2.1.0' //图片压缩框架
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1' //图片压缩插件
-    compile 'com.soundcloud.android:android-crop:1.0.1@aar' //图片裁剪
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'   //recycleview
-    compile 'com.yalantis:phoenix:1.2.3' //下拉刷新框架
-    compile 'com.youth.banner:banner:1.4.10'  //图片轮播插件
-    compile 'com.jph.takephoto:takephoto_library:4.0.3'  //图片选择
+    implementation 'com.roger.gifloadinglibrary:gifloadinglibrary:1.0.0'  //loadinggif
+    implementation 'id.zelory:compressor:2.1.0' //图片压缩框架
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1' //图片压缩插件
+    implementation 'com.soundcloud.android:android-crop:1.0.1@aar' //图片裁剪
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'   //recycleview
+    implementation 'com.yalantis:phoenix:1.2.3' //下拉刷新框架
+    implementation 'com.youth.banner:banner:1.4.10'  //图片轮播插件
+    implementation 'com.bilibili:boxing-impl:1.0.1'//图片选择
+    implementation 'com.github.bumptech.glide:glide:3.7.0' //图片加载
+
+    implementation 'com.amap.api:search:5.7.0'  //pio信息
 }

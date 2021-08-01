@@ -4,15 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.twinkle.cdnubbs.ui.InfoFragment">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center|top"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:text="@string/title_Info" />
+    tools:context="com.twinkle.cdnubbs.ui.fragment.InfoFragment">
 
     <LinearLayout
         android:padding="10dp"
@@ -20,7 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_gravity="top|center"
+            android:text="@string/title_Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
         android:id="@+id/llt_info_admin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -55,14 +56,15 @@
                     tools:text="海底月是天生月" />
 
                 <TextView
+                    android:layout_gravity="top"
                     android:id="@+id/tvw_info_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
-                    android:padding="5dp"
+                    android:layout_marginTop="15dp"
+                    android:padding="1dp"
                     android:background="@color/blackground"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     tools:text="20lv" />
             </LinearLayout>
 
@@ -151,6 +153,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tvw_info_foucs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -160,6 +163,7 @@
             tools:text="0" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tvw_info_fans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

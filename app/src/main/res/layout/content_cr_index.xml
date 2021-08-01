@@ -48,6 +48,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lly_focus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end">
@@ -105,7 +106,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center|start">
+            android:gravity="center|start"
+            android:visibility="gone">
 
             <ImageButton
                 android:id="@+id/ib_cr_index_love"
